@@ -12,6 +12,16 @@ namespace WebApplication1
 
             // Controllers + Swagger
             builder.Services.AddControllers();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAngularDev", policy =>
+                {
+                    policy
+                        .WithOrigins("http://localhost:4200", "https://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -33,11 +43,13 @@ namespace WebApplication1
             app.UseHttpsRedirection();
 
             // Authorization
+            app.UseHttpsRedirection();
+
+            app.UseCors("AllowAngularDev");
+
             app.UseAuthorization();
 
             app.MapControllers();
-
-            app.Run();
         }
     }
 }
