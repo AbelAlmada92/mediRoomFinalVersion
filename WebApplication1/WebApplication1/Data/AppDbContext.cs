@@ -7,6 +7,6 @@ namespace WebApplication1.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<Medico> Medicos => Set<Medico>();
+        public DbSet<Medico> Medico => Set<Medico>();
     }
 }

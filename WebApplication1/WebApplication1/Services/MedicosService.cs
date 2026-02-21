@@ -11,9 +11,9 @@ namespace WebApplication1.Services
         public MedicosService(AppDbContext db) => _db = db;
 
         public Task<List<Medico>> GetAllAsync()
-            => _db.Medicos.AsNoTracking().ToListAsync();
+            => _db.Medico.AsNoTracking().ToListAsync();
 
         public Task<Medico?> GetByIdAsync(int idMedico)
-            => _db.Medicos.AsNoTracking().FirstOrDefaultAsync(m => m.IdMedico == idMedico);
+            => _db.Medico.AsNoTracking().FirstOrDefaultAsync(m => m.IdMedico == idMedico);
     }
 }
