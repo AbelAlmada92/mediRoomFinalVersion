@@ -20,6 +20,7 @@ namespace WebApplication1
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             builder.Services.AddScoped<IMedicosService, MedicosService>();
+            builder.Services.AddScoped<IPacientesService, PacientesService>();
 
             var app = builder.Build();
 
