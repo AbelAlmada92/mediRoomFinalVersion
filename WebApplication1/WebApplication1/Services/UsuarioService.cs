@@ -1,28 +1,28 @@
-﻿using Api_Login.Models;
-using Microsoft.EntityFrameworkCore;
+﻿//using Api_Login.Models;
+//using Microsoft.EntityFrameworkCore;
 
 
-namespace Api_Login.Services
-{
-    public class UsuarioService : IUsuarioService
-    {
-        private readonly UsuarioContext _context;
+//namespace Api_Login.Services
+//{
+//    public class UsuarioService : IUsuarioService
+//    {
+//        private readonly UsuarioContext _context;
 
-        public UsuarioService(UsuarioContext context)
-        {
-            _context = context;
-        }
+//        public UsuarioService(UsuarioContext context)
+//        {
+//            _context = context;
+//        }
 
-        public async Task<Usuario> GetUsuario(string correo, string clave)
-        {
-            Usuario usuario = await _context.Usuarios.Where(u => u.Correo == correo && u.Clave == clave).FirstOrDefaultAsync();
-            return usuario;
-        }
-        public async Task<Usuario> SaveUsuario(Usuario usuario)
-        {
-            _context.Usuarios.Add(usuario);
-            await _context.SaveChangesAsync();
-            return usuario;
-        }
-    }
-}
+//        public async Task<Usuario> GetUsuario(string correo, string clave)
+//        {
+//            Usuario usuario = await _context.Usuarios.Where(u => u.Correo == correo && u.Clave == clave).FirstOrDefaultAsync();
+//            return usuario;
+//        }
+//        //public async Task<Usuario> SaveUsuario(Usuario usuario)
+//        //{
+//        //    _context.Usuarios.Add(usuario);
+//        //    //await _context.SaveChangesAsync();
+//        //    return usuario;
+//        //}
+//    }
+//}
