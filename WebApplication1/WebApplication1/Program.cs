@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using WebApplication1.Services;
 using WebApplication1.Data;
+using WebApplication1.Services;
 
 namespace WebApplication1
 {
@@ -12,6 +12,10 @@ namespace WebApplication1
 
             // Controllers + Swagger
             builder.Services.AddControllers();
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
+            // CORS (una sola vez)
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowAngularDev", policy =>
@@ -22,13 +26,12 @@ namespace WebApplication1
                         .AllowAnyMethod();
                 });
             });
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
 
             // EF Core - DbContext
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+            // Services
             builder.Services.AddScoped<IMedicosService, MedicosService>();
             builder.Services.AddScoped<IPacientesService, PacientesService>();
 
@@ -42,14 +45,13 @@ namespace WebApplication1
 
             app.UseHttpsRedirection();
 
-            // Authorization
-            app.UseHttpsRedirection();
-
             app.UseCors("AllowAngularDev");
 
             app.UseAuthorization();
 
             app.MapControllers();
+
+            app.Run();
         }
     }
 }
