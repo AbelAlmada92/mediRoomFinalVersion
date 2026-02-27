@@ -32,5 +32,17 @@ namespace WebApplication1.Controllers
             var created = await _service.CreateAsync(paciente);
             return CreatedAtAction(nameof(GetByIdPaciente), new { nLegajo = created.NLegajo }, created);
         }
+
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> Update(int id, [FromBody] Paciente paciente)
+        {
+            if (paciente is null) return BadRequest();
+
+            if (paciente.IdPaciente != 0 && paciente.IdPaciente != id)
+                return BadRequest("IdPaciente del body no coincide con el id de la URL.");
+
+            var updated = await _service.UpdateAsync(id, paciente);
+            return updated is null ? NotFound() : NoContent();
+        }
     }
 }

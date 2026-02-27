@@ -7,5 +7,6 @@ namespace WebApplication1.Services
         Task<List<Paciente>> GetAllAsync();
         Task<Paciente?> GetByIdPacienteAsync(int nLegajo);
         Task<Paciente> CreateAsync(Paciente paciente);
+        Task<Paciente?> UpdateAsync(int idPaciente, Paciente paciente);
     }
 }

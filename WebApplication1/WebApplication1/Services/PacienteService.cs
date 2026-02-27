@@ -21,5 +21,27 @@ namespace WebApplication1.Services
             await _db.SaveChangesAsync();
             return paciente;
         }
+
+        public async Task<Paciente?> UpdateAsync(int idPaciente, Paciente paciente)
+        {
+            var existing = await _db.Pacientes.FirstOrDefaultAsync(p => p.IdPaciente == idPaciente);
+            if (existing is null) return null;
+
+            existing.Nombre = paciente.Nombre;
+            existing.Apellido = paciente.Apellido;
+            existing.DNI = paciente.DNI;
+            existing.NLegajo = paciente.NLegajo;
+            existing.ObraSocial = paciente.ObraSocial;
+            existing.SexoBio = paciente.SexoBio;
+            existing.FechaNacimiento = paciente.FechaNacimiento;
+            existing.GrupoSanguineo = paciente.GrupoSanguineo;
+            existing.MedicacionPrescripta = paciente.MedicacionPrescripta;
+            existing.Domicilio = paciente.Domicilio;
+            existing.TelefonoPaciente = paciente.TelefonoPaciente;
+
+            await _db.SaveChangesAsync();
+            return existing;
+        }
+
     }
 }
