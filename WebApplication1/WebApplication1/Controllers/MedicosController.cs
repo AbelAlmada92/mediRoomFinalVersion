@@ -36,6 +36,15 @@ namespace WebApplication1.Controllers
 
         }
 
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> Update(int id, [FromBody] Medico medico)
+        {
+            if (medico is null) return BadRequest();
+
+            var updated = await _service.UpdateAsync(id, medico);
+            return updated is null ? NotFound() : NoContent();
+        }
+
 
     }
 }
