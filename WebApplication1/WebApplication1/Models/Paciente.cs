@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace WebApplication1.Models
 {
@@ -25,5 +26,8 @@ namespace WebApplication1.Models
         public string Domicilio { get; set; } = string.Empty;
 
         public int? TelefonoPaciente { get; set; }
+        //nav
+        [JsonIgnore]
+        public ICollection<Observacion> Observaciones { get; set; } = new List<Observacion>();
     }
 }

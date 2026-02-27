@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace WebApplication1.Models
 {
@@ -19,5 +20,8 @@ namespace WebApplication1.Models
         public int? TelefonoMedico { get; set; }
 
         public string? Mail { get; set; }
+
+        [JsonIgnore]
+        public ICollection<Observacion> Observaciones { get; set; } = new List<Observacion>();
     }
 }

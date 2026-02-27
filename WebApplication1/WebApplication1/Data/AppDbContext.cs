@@ -9,5 +9,8 @@ namespace WebApplication1.Data
 
         public DbSet<Medico> Medico => Set<Medico>();
         public DbSet<Paciente> Pacientes => Set<Paciente>();
+
+        public DbSet<Observacion> Observaciones => Set<Observacion>();
+
     }
 }

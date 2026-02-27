@@ -34,6 +34,7 @@ namespace WebApplication1
             // Services
             builder.Services.AddScoped<IMedicosService, MedicosService>();
             builder.Services.AddScoped<IPacientesService, PacientesService>();
+            builder.Services.AddScoped<IObservacionesService, ObservacionesService>();
 
             var app = builder.Build();
 
