@@ -15,5 +15,12 @@ namespace WebApplication1.Services
 
         public Task<Medico?> GetByIdAsync(int idMedico)
             => _db.Medico.AsNoTracking().FirstOrDefaultAsync(m => m.IdMedico == idMedico);
+
+        public async Task<Medico> CreateAsync(Medico medico)
+        {
+            _db.Medico.Add(medico);
+            await _db.SaveChangesAsync();
+            return medico;
+        }
     }
 }

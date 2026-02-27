@@ -12,8 +12,8 @@ namespace WebApplication1.Services
         public Task<List<Paciente>> GetAllAsync()
             => _db.Pacientes.AsNoTracking().ToListAsync();
 
-        public Task<Paciente?> GetByNLegajoAsync(int nLegajo)
-            => _db.Pacientes.AsNoTracking().FirstOrDefaultAsync(p => p.NLegajo == nLegajo);
+        public Task<Paciente?> GetByIdPacienteAsync(int idPaciente)
+            => _db.Pacientes.AsNoTracking().FirstOrDefaultAsync(p => p.IdPaciente == idPaciente);
 
         public async Task<Paciente> CreateAsync(Paciente paciente)
         {

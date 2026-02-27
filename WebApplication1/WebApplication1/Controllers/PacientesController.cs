@@ -11,20 +11,17 @@ namespace WebApplication1.Controllers
         private readonly IPacientesService _service;
         public PacientesController(IPacientesService service) => _service = service;
 
-        // GET /api/pacientes
         [HttpGet]
         public async Task<IActionResult> GetAll()
             => Ok(await _service.GetAllAsync());
 
-        // GET /api/pacientes/legajo/123
         [HttpGet("legajo/{nLegajo:int}")]
-        public async Task<IActionResult> GetByNLegajo(int nLegajo)
+        public async Task<IActionResult> GetByIdPaciente(int nLegajo)
         {
-            var paciente = await _service.GetByNLegajoAsync(nLegajo);
+            var paciente = await _service.GetByIdPacienteAsync(nLegajo);
             return paciente is null ? NotFound() : Ok(paciente);
         }
 
-        //POST /api/pacientes/
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Paciente paciente)
         {
@@ -33,7 +30,7 @@ namespace WebApplication1.Controllers
             paciente.IdPaciente = 0;
 
             var created = await _service.CreateAsync(paciente);
-            return CreatedAtAction(nameof(GetByNLegajo), new { nLegajo = created.NLegajo }, created);
+            return CreatedAtAction(nameof(GetByIdPaciente), new { nLegajo = created.NLegajo }, created);
         }
     }
 }

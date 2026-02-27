@@ -6,5 +6,6 @@ namespace WebApplication1.Services
     {
         Task<List<Medico>> GetAllAsync();
         Task<Medico?> GetByIdAsync(int idMedico);
+        Task<Medico> CreateAsync(Medico medico);
     }
 }
