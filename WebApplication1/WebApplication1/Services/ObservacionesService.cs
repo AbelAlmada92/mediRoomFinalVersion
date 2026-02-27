@@ -32,5 +32,24 @@ namespace WebApplication1.Services
                   .Include(o => o.Medico)
                   .OrderByDescending(o => o.FechaObservacion)
                   .ToListAsync();
+
+        public async Task<Observacion?> UpdateAsync(int idObservacion, Observacion observacion)
+        {
+            var existing = await _db.Observaciones.FirstOrDefaultAsync(o => o.IdObservacion == idObservacion);
+            if (existing is null) return null;
+
+
+            existing.IdPaciente = observacion.IdPaciente;
+            existing.IdMedico = observacion.IdMedico;
+
+            existing.TextoObservacion = observacion.TextoObservacion;
+
+
+            if (observacion.FechaObservacion != default)
+                existing.FechaObservacion = observacion.FechaObservacion;
+
+            await _db.SaveChangesAsync();
+            return existing;
+        }
     }
 }
