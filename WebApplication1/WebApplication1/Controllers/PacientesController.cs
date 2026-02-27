@@ -15,10 +15,10 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> GetAll()
             => Ok(await _service.GetAllAsync());
 
-        [HttpGet("legajo/{nLegajo:int}")]
-        public async Task<IActionResult> GetByIdPaciente(int nLegajo)
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetByIdPaciente(int id)
         {
-            var paciente = await _service.GetByIdPacienteAsync(nLegajo);
+            var paciente = await _service.GetByIdPacienteAsync(id);
             return paciente is null ? NotFound() : Ok(paciente);
         }
 
